@@ -1,17 +1,16 @@
+// backend/config/db.js
 const mongoose = require('mongoose');
-const config = require('config');
-const db = config.get('mongoURI');
 
-const connectDB = async () => {
+const connectDB = async (mongoURI) => {
   try {
-    await mongoose.connect(db, {
-      // Deprecated options removed
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
-
-    console.log('MongoDB Connected...');
+    console.log('MongoDB connected...');
   } catch (err) {
     console.error(err.message);
-    process.exit(1);
+    process.exit(1); // Exit process with failure
   }
 };
 

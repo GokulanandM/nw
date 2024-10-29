@@ -27,20 +27,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get email() {
-    return this.loginForm.get('email')!;
-  }
-
-  get password() {
-    return this.loginForm.get('password')!;
-  }
-
   togglePasswordVisibility(): void {
     this.passwordVisible = !this.passwordVisible;
-    const passwordInput = document.getElementById('password') as HTMLInputElement;
-    if (passwordInput) {
-      passwordInput.type = this.passwordVisible ? 'text' : 'password';
-    }
   }
 
   onSubmit(): void {
@@ -56,9 +44,6 @@ export class LoginComponent implements OnInit {
           console.error('Login error', error);
         }
       );
-    } else {
-      this.loginForm.markAllAsTouched();
-      this.toastr.error('Please correct the errors in the form.', 'Error');
     }
   }
 }

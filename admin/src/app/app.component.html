@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Car Listing</h1>
+
+  <!-- Loading indicator -->
+  <div *ngIf="loading" class="loading">
+    Loading cars...
+  </div>
+
+  <!-- Error message display -->
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Cars list display -->
+  <ul *ngIf="!loading && !errorMessage">
+    <li *ngFor="let car of cars" class="car-item">
+      <h3>{{ car.brand }} {{ car.model }} ({{ car.year }})</h3>
+      <p><strong>Price:</strong> ${{ car.price }}</p>
+      <p><strong>Kilometers:</strong> {{ car.kilometers }} km</p>
+      <p><strong>Fuel:</strong> {{ car.fuel }}</p>
+      <p><strong>Consumption:</strong> {{ car.consumption }} L/100 km</p>
+      <p><strong>Description:</strong> {{ car.description }}</p>
+      <img [src]="car.image" alt="{{ car.brand }} {{ car.model }}" class="car-image" />
+      <button (click)="deleteCar(car._id)" class="delete-button">Delete</button>
+    </li>
+  </ul>
+</div>
